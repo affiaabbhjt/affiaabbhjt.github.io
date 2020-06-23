@@ -1,57 +1,561 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>Unix课程笔记</title>
-      <link href="/2020/06/22/Unix%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-      <url>/2020/06/22/Unix%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Unix课程笔记"><a href="#Unix课程笔记" class="headerlink" title="Unix课程笔记"></a>Unix课程笔记</h1><h3 id="简单的命令"><a href="#简单的命令" class="headerlink" title="简单的命令"></a>简单的命令</h3><p><code>date</code> 显示日期和时间<br><code>who</code>显示用户信息<br><code>cal</code>显示日历<br><code>help</code>或<code>man</code>显示帮助等</p><a id="more"></a>  <h2 id="1-文件系统"><a href="#1-文件系统" class="headerlink" title="1. 文件系统"></a>1. 文件系统</h2><ul><li>可读r  </li><li>可写w  </li><li>可执行x  </li></ul><p>==使用<code>ls -l</code>可查看当前目录文件及其权限==<br>3个rwx表示：拥有者自己的权限、组权限、其它人的权限  </p><ul><li>-  表示普通文件  </li><li>d  表示目录  </li><li>c  表示字符设备  </li><li>b  表示块设备  </li><li>l  表示符号连接  </li></ul><p><font size=5>文件相关命令</font><br>根目录、主目录（默认为主目录）</p><ul><li><p><code>pwd</code>显示目录路径名</p></li><li><p><code>cd</code>切换目录</p></li><li><p><code>lp</code>打印文件</p></li><li><p><code>ls</code>列出当前目录 <code>-a</code>（全部文件）</p></li><li><p><code>mkdir</code>创建目录</p></li><li><p><code>rmdir</code>删除目录（只能空目录）</p></li><li><p><code>rm</code>删除目录或文件<code>-r</code>表示递归操作</p></li><li><p>文件复制<code>cp</code>（会覆盖）（-b若存在创建备份，-i若存在要求确认，-r复制目录）</p></li></ul><blockquote><p><code>cp</code> 文件名 新文件名<br><code>cp</code> 文件名(可多个) 当前目录下子目录<br><code>cp –r</code> 目录 新目录    将目录及其子文件复制到新目录  </p></blockquote><ul><li>文件移动<code>mv</code>（操作同复制）(-f直接移动，不确认)</li><li>文件链接<code>ln</code>(类似复制)</li><li>文件字数<code>wc</code>（输出行数、字数、字符数）</li></ul><p>==<font size=5>shell重定向</font>==</p><ul><li>cat&gt;文件名 创建文件</li><li>cat 文件1&gt;文件2    将文件1复制进入文件2</li><li>cat 文件1 文件2(…)&gt;文件x    将文件1,2,3…复制进入文件x</li></ul><table><thead><tr><th>命令</th><th>说明</th></tr></thead><tbody><tr><td>command &gt; file</td><td>将输出重定向到 file。</td></tr><tr><td>command &lt; file</td><td>将输入重定向到 file。</td></tr><tr><td>command &gt;&gt; file</td><td>将输出以追加的方式重定向到 file。</td></tr><tr><td>command &lt;&lt; EOF</td><td>标准输入，当碰到EOF字符串时，输入结束</td></tr><tr><td>n &gt; file</td><td>将文件描述符为 n 的文件重定向到 file。</td></tr><tr><td>n &gt;&gt; file</td><td>将文件描述符为 n 的文件以追加的方式重定向到 file。</td></tr><tr><td>n &gt;&amp; m</td><td>将输出文件 m 和 n 合并。</td></tr><tr><td>n &lt;&amp; m</td><td>将输入文件 m 和 n 合并。</td></tr><tr><td>&lt;&lt; tag</td><td>将开始标记 tag 和结束标记 tag 之间的内容作为输入。</td></tr></tbody></table><ul><li><code>?</code>代替单个字符</li><li><code>*</code>代替字符串</li><li><code>[list]</code>代替”list”字符串</li><li>末尾加<code>.*</code>包括隐藏文件  </li></ul><hr><ul><li><p><code>find</code>查找文件（<code>-print</code>显示结果）</p><p><code>-name</code>按文件名查找<br><code>-size</code>按文件大小查找<br><code>-type</code>按文件类型查找</p></li><li><p>显示文件头部head</p></li><li><p>显示文件尾部tail</p></li><li><p>选择文件一部分cut</p><p><code>-f</code>加数字 显示某一域<br><code>-c</code>加数字 显示每行开头几个字符<br><code>-d</code>加字符串 修改域分隔符</p></li><li><p>连接文件<code>paste</code>  (<code>-d</code>加字符串 修改域分隔符)</p></li></ul><h2 id="２-vi-vim"><a href="#２-vi-vim" class="headerlink" title="２.vi vim"></a>２.vi vim</h2><ul><li><p>vi工作模式</p><ol><li>命令模式  </li><li>插入模式</li><li>命令行模式</li><li>visual模式</li></ol></li><li><p>vi的模式切换  </p></li></ul><p>默认进入命令模式<br>按<kbd>:</kbd>进入命令行模式<br>从命令模式进入文本输入模式的命令键：</p><table><thead><tr><th align="left">命令</th><th align="left">功能</th></tr></thead><tbody><tr><td align="left">i</td><td align="left">在光标前插入文本</td></tr><tr><td align="left">I</td><td align="left">在光标所在行首插入文本</td></tr><tr><td align="left">a</td><td align="left">在光标后加入文本</td></tr><tr><td align="left">A</td><td align="left">在光标所在行尾加入文本</td></tr><tr><td align="left">o</td><td align="left">在光标所在行下面新加一行</td></tr><tr><td align="left">O</td><td align="left">在光标所在行上面新加一行</td></tr></tbody></table><p>从输入模式返回命令模式的命令键：<kbd>ESC</kbd></p><table><thead><tr><th><strong>命令</strong></th><th><strong>功能</strong></th></tr></thead><tbody><tr><td>x</td><td>删除光标所在字符</td></tr><tr><td>dd</td><td>删除光标所在行</td></tr><tr><td>u</td><td>撤销最近修改</td></tr><tr><td>U</td><td>撤销当前行的所有修改</td></tr><tr><td>r</td><td>替换光标所在字符</td></tr><tr><td>R</td><td>替换从光标开始的字符，同时进入输入模式</td></tr><tr><td>.</td><td>重复上一次的修改</td></tr></tbody></table><p><code>/</code>向前搜索<br><code>?</code>向后搜索<br><code>:wq</code>保存退出<br><code>:w</code>保存<br><code>:q!</code>不保存退出<br><code>ZZ</code>保存退出</p><ul><li><p>键盘方向键移动光标</p></li><li><p>命令模式下，hjkl键移动光标</p></li><li><p><code>h</code>表示向西/左</p></li><li><p><code>j</code>表示向南/下</p></li><li><p><code>k</code>表示向北/上</p></li><li><p><code>l</code>表示向东/右</p></li><li><p>命令模式下，</p></li><li><p><code>0</code>或<code>^</code>移动光标到行首</p></li><li><p><code>$</code>移动光标到行尾</p></li><li><p>命令模式下，</p><ol><li><code>w</code>向后移动一个word</li><li><code>b</code>向前移动光标到word的开头</li><li><code>e</code>移动光标到word的尾部</li></ol></li></ul><p><code>:n</code>进入下一文件<br><code>:e</code>切换到新文件<br><code>:ar</code>显示文件名<br><code>:r</code>读另一个文件</p><p><code>dd</code>剪切当前行<br><code>yy</code>复制当前行<br><code>p</code>粘贴行在当前行下(<code>P</code>上)</p><p>==<font size=5>寄存器</font>==</p><p>命令行模式:registers显示寄存器</p><p>字母寄存器a-z，一共26个，供用户使用<br>编号寄存器0-9，10个，vim自己使用，存放删除和拷贝的文本<br>“0号寄存器是visual模式下拷贝的问题、yy拷贝的行文本<br>“1-”9号寄存器是dd删除的行文本<br>缺省寄存器<br>    %    当前窗口对应的文件名<br>    #    当前窗口的其它文件名<br>    :    命令行模式最近输入的命令<br>    .    最近插入的文本<br>    “    最近删除或拷贝的文本</p><ul><li><p>Visual模式</p><p>命令模式下<code>v</code>进入visual模式</p><p><code>khjl</code>或方向键移动光标</p><p><code>y</code>命令将选择内容拷贝到””和”0寄存器，y表示yank</p></li><li><p>光标定位<br><code>:n</code>定位到第n行<br><code>:0</code>或<code>:1</code>定位到第1行的行首<br><code>:$</code>定位到最后一行的行首<br><code>1G</code>定位到第1行的行首<br><code>G</code>或<code>0G</code>定位到最后一行的行首<br><code>nG</code>定位到第n行的行首<br><code>Ctrl-g</code>在命令行区域输出当前行号<br><code>Ctrl-End</code>定位到最后一个字符</p></li><li><p>shell相关<br><code>:</code>shell命令切换到shell，<code>exit</code>回到vim<br><code>:!</code>命令，执行shell命令<br><code>:r!</code>命令，将shell命令输出粘贴到当前位置</p></li><li><p>定制相关<br><code>:set</code> 选项名<br>布尔型（不加或加no），数值型，串型（=值）</p><p>ai新一行对齐上一行<br>ic搜索忽略大小写<br>magic允许搜索特殊字符<br>nu显示行号<br>report通知用户上一命令影响行号<br>scroll设定Ctrl-d翻动行数<br>sw设置缩进空格数<br>smd显示vi编辑器模式<br>terse缩短错误信息<br>wm设置距屏幕右边界为指定的字符数    </p></li></ul><hr><h2 id="3-正则表达式"><a href="#3-正则表达式" class="headerlink" title="3. 正则表达式"></a>3. 正则表达式</h2><table><thead><tr><th>字符</th><th>BRE/ERE</th><th>含义</th></tr></thead><tbody><tr><td>\</td><td>Both</td><td>转义</td></tr><tr><td>.</td><td>Both</td><td>匹配单个字符</td></tr><tr><td>*</td><td>Both</td><td>匹配任意次，可以是0次。a<em>表示匹配任意多次a，.\</em>表示任意字符串</td></tr><tr><td>^</td><td>Both</td><td>锚定匹配位置，从一行的行首开始</td></tr><tr><td>$</td><td>Both</td><td>锚定匹配位置，到一行的行尾</td></tr><tr><td>[…]</td><td>Both</td><td>匹配中括号内的某个字符。x-y表示一个范围；[^…]表示不匹配中括号中的任意字符。[开括号后跟-或]，-]转义为普通字符</td></tr><tr><td>\{n,m\}</td><td>BRE</td><td>匹配次数为[n,m]，\{n\}匹配n次，\{n,\}最小匹配次数为n</td></tr><tr><td>\(\)</td><td>BRE</td><td>定义一个匹配位置，在后部可以引用该位置。例如，\(ab\).*\1表示ab字符串包夹了一个任意字符串。</td></tr><tr><td>\n</td><td>BRE</td><td>引用已经定义的位置，可以从\1到\9</td></tr><tr><td>{n,m}</td><td>ERE</td><td>与BRE的\{n,m\}相同</td></tr><tr><td>+</td><td>ERE</td><td>匹配至少1次</td></tr><tr><td>?</td><td>ERE</td><td>匹配0或1次</td></tr><tr><td>|</td><td>ERE</td><td>或</td></tr><tr><td>()</td><td>ERE</td><td>匹配括号内的整个字符串</td></tr></tbody></table><ul><li><p>特别的</p><p>[[:alnum:]] 字符+数字</p><p>[[:alpha:]] 字符</p><p>[[:digit:]] 数字</p><p>[[:lower:]] 小写字符</p><p>[[:upper:]] 大写字符</p></li></ul><hr><h2 id="4-shell相关"><a href="#4-shell相关" class="headerlink" title="4. shell相关"></a>4. shell相关</h2><p>shell主要功能：命令执行、文件名替换、i/o重定向、管道、环境控制、后台处理、shell脚本</p><p>命令的语法<br>    命令+空格+[选项]+参数+(;|回车)<br>    多行单条命令，一行的尾部以\结束</p><ul><li><p>原理<br>/etc/passwd决定了用户登录后执行的shell程序<br>有些特殊的用户，可以不是shell程序</p><ul><li>shell解析用户命令<br>创建子进程执行用户命令<br>shell等待命令子进程退出<br>命令子进程退出，发送SIGCHLD信号给shell<br>shell在信号处理函数中处理子进程退出</li><li>shell进程退出<br>发送SIGCHLD信号给login进程<br>login进程处理SIGCHLD信号<br>退出，发送SIGCHLD信号给init进程<br>init进程处理SIGCHLD信号，重新fork/exec一个getty进程</li></ul></li><li><p>echo显示消息</p><pre><code>转义字符-e进行解释\a警报\b回退\c禁止换行\f换页\n回车换行\r回车不换行\t水平制表符\v垂直制表符</code></pre></li></ul><p>重音符号``：执行命令<br>分号<code>;</code>：命令序列<br>括号<code>()</code>：命令编组<br><code>&amp;</code>：后台运行<br><code>|</code>：管道，连接命令</p><table><thead><tr><th><strong>元字符</strong></th><th><strong>功能</strong></th></tr></thead><tbody><tr><td>?</td><td>匹配路径名的单个字符</td></tr><tr><td>*</td><td>匹配路径名的任意长度的字符串</td></tr><tr><td>[list]</td><td>匹配list中任意一个字符</td></tr><tr><td>[!list]</td><td>匹配不在list中的任意一个字符</td></tr></tbody></table><ul><li><p>消除元字符含义<br><code>\</code>和<code>‘’</code>等价，单引号不展开变量<br><code>“”</code>除了<code>$</code>、<code>\</code>、<code>“”</code>，可展开变量</p></li><li><p>标准变量<br>HOME变量记录用户主目录<br>PATH变量给出外部程序的搜索路径<br>IFS变量定义扩展命令参数时的分隔符</p></li><li><p>参数<br>-开头当成选项<br>双引号、单引号、重音符号开头作为字符串<br>$开头作为变量<br>&lt;&gt;作为重定向符号<br>|作为管道符号<br>其余字符串如果包含*?[]需要做路径匹配展开</p></li></ul><p><code>ps</code>显示PID</p><table><thead><tr><th><strong>选项</strong></th><th><strong>功能</strong></th></tr></thead><tbody><tr><td>-a</td><td>显示所有进程，但不包括会话leader，不包括无终端进程</td></tr><tr><td>-f</td><td>显示进程完整信息</td></tr><tr><td>-e</td><td>显示所有进程</td></tr><tr><td>-H</td><td>按照树型显示</td></tr><tr><td>-j</td><td>按照job形式输出</td></tr></tbody></table><p><code>nohup</code>退出系统后继续执行<br><code>kill</code>终止进程<br>    信号列表64个<br>    kill –l<br>    kill –n pid<br><code>tee</code>分离输出<br><code>sort</code>文本文件排序<br><code>sleep</code>延时定时</p><p><code>find</code>查找文件目录</p><table><thead><tr><th><strong>选项</strong></th><th><strong>功能</strong></th></tr></thead><tbody><tr><td>-name  filename</td><td>根据给定的filename做匹配查找</td></tr><tr><td>-size  +-n</td><td>查找大小为n的文件</td></tr><tr><td>-type  filetype</td><td>查找指定类型filetype的文件</td></tr><tr><td>-atime  n</td><td>查找access访问时间的问题</td></tr><tr><td>-mtime  n</td><td>查找修改时间的文件</td></tr></tbody></table><p><code>grep</code>查找文件内容</p><table><thead><tr><th><strong>短选项</strong></th><th><strong>长选项</strong></th><th><strong>功能</strong></th></tr></thead><tbody><tr><td>-c</td><td>–count</td><td>只显示匹配的行数</td></tr><tr><td>-i</td><td>–ignore-case</td><td>忽略大小写匹配</td></tr><tr><td>-G</td><td>–basic-regexp</td><td>BRE，grep缺省</td></tr><tr><td>-E</td><td>–extended-regexp</td><td>ERE，egrep缺省</td></tr><tr><td>-e  PATTERNS</td><td>–regexp=PATTERNS</td><td>指定一个或多个RE</td></tr><tr><td>-v</td><td>–invert-match</td><td>显示不匹配的行</td></tr><tr><td>-n</td><td>–line-number</td><td>输出行号</td></tr></tbody></table><p><code>xargs [command [initial-arguments]]</code><br><code>xargs</code> 从标准输入上读，将标准输入文件按照空格/TAB拆解成参数，作为command执行参数。</p><p><code>jobs</code>列举后台执行的作业<br><code>history</code>命令则列出到目前为止，执行的所有命令<br><code>alias</code>设置别名<code>alias[别名]=[指令名称]</code><br><code>tee</code>命令分离输出，同时输出到标准输出和文件</p><table><thead><tr><th><strong>选项</strong></th><th><strong>功能</strong></th></tr></thead><tbody><tr><td>-a</td><td>追加到文件</td></tr><tr><td>-i</td><td>忽略中断信号</td></tr></tbody></table><p>使用&amp;&amp;和||连接两条命令<br>    &amp;&amp;表示and<br>    ||表示or</p><p><code>. command</code>命令执行<code>command</code>，但不会去fork一个新进程<br><code>printf</code>与C语言类似<br><code>df</code>显示可用空间<br><code>du</code>统计文件或者目录的磁盘使用情况</p><p><code>tar zcfv</code>压缩成.tar.gz文件<br><code>tar zxfv</code>解压.tar.gz文件<br><code>tar Jcfv</code>压缩成.tar.xz文件<br><code>tar Jxfv</code>解压.tar.xz文件<br><code>tar jcfv</code>压缩成.tar.bz2文件<br><code>tar jxfv</code>解压.tar.bz2文件</p><p><code>chmod</code>修改文件目录的访问权限<br><code>chown</code>修改文件目录的owner<br><code>chgrp</code>修改文件目录的group</p><p><code>stty</code>设定终端模式<br>    stty –echo禁止回显，输入口令时<br>    stty echo打开回显<br><code>tput</code>控制终端输出缓冲<br>    tput clear清屏<br>    tput cup row column移动光标到row行column列</p><h4 id="脚本相关"><a href="#脚本相关" class="headerlink" title="==脚本相关=="></a>==脚本相关==</h4><ul><li>参数<br>$1-$9表示参数<br>$0表示命令名<br>$#表示参数个数<br>$*将所有参数使用$IFS隔开，形成一个字符串<br>$@是每个参数分隔开<br>set命令用于改变命令行参数<br>$?表示进程退出状态<br>$$表示当前进程id<br><code>shift</code> [n]命令删除前n个参数<br>计算算术的时候使用$(())作为算术表达式</li></ul><p><code>eval + [command]</code>shell在执行命令行之前扫描它两次(重定义/两次解释变量)</p><ul><li><p>if循环<br>if 条件; then<br>command lines<br>[elif 条件<br>command lines]<br>[else<br>command lines]<br>fi</p><ul><li>条件判断<br>常用的：<br>[ -a FILE ] 如果 FILE 存在则为真。<br>[ -d FILE ] 如果 FILE 存在且是一个目录则返回为真。<br>[ -e FILE ] 如果 指定的文件或目录存在时返回为真。<br>[ -f FILE ] 如果 FILE 存在且是一个普通文件则返回为真。<br>[ -r FILE ] 如果 FILE 存在且是可读的则返回为真。<br>[ -w FILE ] 如果 FILE 存在且是可写的则返回为真。<br>[ -x FILE ] 如果 FILE 存在且是可执行的则返回为真。<br>[ INT1 -eq INT2 ] INT1和INT2两数相等返回为真 ,=<br>[ INT1 -ne INT2 ] INT1和INT2两数不等返回为真 ,&lt;&gt;<br>[ INT1 -gt INT2 ] INT1大于INT2返回为真 ,&gt;<br>[ INT1 -ge INT2 ] INT1大于等于INT2返回为真,&gt;=<br>[ INT1 -lt INT2 ] INT1小于INT2返回为真 ,&lt;<br>[ INT1 -le INT2 ] INT1小于等于INT2返回为真,&lt;=<br>[ -z STRING ] 如果STRING的长度为零则返回为真，即空是真<br>[ -n STRING ] 如果STRING的长度非零则返回为真，即非空是真<br>[ STRING1 ]　 如果字符串不为空则返回为真,与-n类似<br>[ STRING1 == STRING2 ] 如果两个字符串相同则返回为真<br>[ STRING1 != STRING2 ] 如果字符串不相同则返回为真<br>[ STRING1 &lt; STRING2 ] 如果 “STRING1”字典排序在“STRING2”前面则返回为真。<br>[ STRING1 &gt; STRING2 ] 如果 “STRING1”字典排序在“STRING2”后面则返回为真。<br>[ ! EXPR ] 逻辑非，如果 EXPR 是false则返回为真。<br>[ EXPR1 -a EXPR2 ] 逻辑与，如果 EXPR1 and EXPR2 全真则返回为真。<br>[ EXPR1 -o EXPR2 ] 逻辑或，如果 EXPR1 或者 EXPR2 为真则返回为真。<br>[ ] || [ ] 用OR来合并两个条件<br>[ ] &amp;&amp; [ ] 用AND来合并两个条件</li></ul></li></ul><ul><li><p>for循环<br>基本格式如下<br>for variable in list-of-values<br>do<br>…<br>done</p></li><li><p>while循环<br>while [ condition ]<br>do<br>…<br>done</p></li><li><p>until循环<br>until [ condition ]; do<br>…<br>done</p></li><li><p>函数<br>函数定义<br>[function] funname()<br>{<br>…<br>}</p></li></ul>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>2019-12-25 第一篇博客</title>
+    <url>/2019/12/25/2019-12-25-%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h2><p>根据网上的教程制作了博客，这是作为测试的第一篇文章</p>
+<p>2019年12月25日 21:22:13</p>
+]]></content>
       <categories>
-          
-          <category> 学习 </category>
-          
+        <category>日常</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 学习 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2019-12-25 第一篇博客</title>
-      <link href="/2019/12/25/2019-12-25-%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
-      <url>/2019/12/25/2019-12-25-%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-      
-        <content type="html"><![CDATA[<h2 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h2><p>根据网上的教程制作了博客，这是作为测试的第一篇文章</p><p>2019年12月25日 21:22:13</p>]]></content>
-      
-      
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unix课程笔记</title>
+    <url>/2020/06/22/Unix%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="Unix课程笔记"><a href="#Unix课程笔记" class="headerlink" title="Unix课程笔记"></a>Unix课程笔记</h1><h3 id="简单的命令"><a href="#简单的命令" class="headerlink" title="简单的命令"></a>简单的命令</h3><p><code>date</code> 显示日期和时间<br><code>who</code>显示用户信息<br><code>cal</code>显示日历<br><code>help</code>或<code>man</code>显示帮助等</p>
+<a id="more"></a>  
+
+<h2 id="1-文件系统"><a href="#1-文件系统" class="headerlink" title="1. 文件系统"></a>1. 文件系统</h2><ul>
+<li>可读r  </li>
+<li>可写w  </li>
+<li>可执行x  </li>
+</ul>
+<p>==使用<code>ls -l</code>可查看当前目录文件及其权限==<br>3个rwx表示：拥有者自己的权限、组权限、其它人的权限  </p>
+<ul>
+<li>-  表示普通文件  </li>
+<li>d  表示目录  </li>
+<li>c  表示字符设备  </li>
+<li>b  表示块设备  </li>
+<li>l  表示符号连接  </li>
+</ul>
+<p><font size=5>文件相关命令</font><br>根目录、主目录（默认为主目录）</p>
+<ul>
+<li><p><code>pwd</code>显示目录路径名</p>
+</li>
+<li><p><code>cd</code>切换目录</p>
+</li>
+<li><p><code>lp</code>打印文件</p>
+</li>
+<li><p><code>ls</code>列出当前目录 <code>-a</code>（全部文件）</p>
+</li>
+<li><p><code>mkdir</code>创建目录</p>
+</li>
+<li><p><code>rmdir</code>删除目录（只能空目录）</p>
+</li>
+<li><p><code>rm</code>删除目录或文件<code>-r</code>表示递归操作</p>
+</li>
+<li><p>文件复制<code>cp</code>（会覆盖）（-b若存在创建备份，-i若存在要求确认，-r复制目录）</p>
+</li>
+</ul>
+<blockquote>
+<p><code>cp</code> 文件名 新文件名<br><code>cp</code> 文件名(可多个) 当前目录下子目录<br><code>cp –r</code> 目录 新目录    将目录及其子文件复制到新目录  </p>
+</blockquote>
+<ul>
+<li>文件移动<code>mv</code>（操作同复制）(-f直接移动，不确认)</li>
+<li>文件链接<code>ln</code>(类似复制)</li>
+<li>文件字数<code>wc</code>（输出行数、字数、字符数）</li>
+</ul>
+<p>==<font size=5>shell重定向</font>==</p>
+<ul>
+<li>cat&gt;文件名 创建文件</li>
+<li>cat 文件1&gt;文件2    将文件1复制进入文件2</li>
+<li>cat 文件1 文件2(…)&gt;文件x    将文件1,2,3…复制进入文件x</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>command &gt; file</td>
+<td>将输出重定向到 file。</td>
+</tr>
+<tr>
+<td>command &lt; file</td>
+<td>将输入重定向到 file。</td>
+</tr>
+<tr>
+<td>command &gt;&gt; file</td>
+<td>将输出以追加的方式重定向到 file。</td>
+</tr>
+<tr>
+<td>command &lt;&lt; EOF</td>
+<td>标准输入，当碰到EOF字符串时，输入结束</td>
+</tr>
+<tr>
+<td>n &gt; file</td>
+<td>将文件描述符为 n 的文件重定向到 file。</td>
+</tr>
+<tr>
+<td>n &gt;&gt; file</td>
+<td>将文件描述符为 n 的文件以追加的方式重定向到 file。</td>
+</tr>
+<tr>
+<td>n &gt;&amp; m</td>
+<td>将输出文件 m 和 n 合并。</td>
+</tr>
+<tr>
+<td>n &lt;&amp; m</td>
+<td>将输入文件 m 和 n 合并。</td>
+</tr>
+<tr>
+<td>&lt;&lt; tag</td>
+<td>将开始标记 tag 和结束标记 tag 之间的内容作为输入。</td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>?</code>代替单个字符</li>
+<li><code>*</code>代替字符串</li>
+<li><code>[list]</code>代替”list”字符串</li>
+<li>末尾加<code>.*</code>包括隐藏文件  </li>
+</ul>
+<hr>
+<ul>
+<li><p><code>find</code>查找文件（<code>-print</code>显示结果）</p>
+<p><code>-name</code>按文件名查找<br><code>-size</code>按文件大小查找<br><code>-type</code>按文件类型查找</p>
+</li>
+<li><p>显示文件头部head</p>
+</li>
+<li><p>显示文件尾部tail</p>
+</li>
+<li><p>选择文件一部分cut</p>
+<p><code>-f</code>加数字 显示某一域<br><code>-c</code>加数字 显示每行开头几个字符<br><code>-d</code>加字符串 修改域分隔符</p>
+</li>
+<li><p>连接文件<code>paste</code>  (<code>-d</code>加字符串 修改域分隔符)</p>
+</li>
+</ul>
+<h2 id="２-vi-vim"><a href="#２-vi-vim" class="headerlink" title="２.vi vim"></a>２.vi vim</h2><ul>
+<li><p>vi工作模式</p>
+<ol>
+<li>命令模式  </li>
+<li>插入模式</li>
+<li>命令行模式</li>
+<li>visual模式</li>
+</ol>
+</li>
+<li><p>vi的模式切换  </p>
+</li>
+</ul>
+<p>默认进入命令模式<br>按<kbd>:</kbd>进入命令行模式<br>从命令模式进入文本输入模式的命令键：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">i</td>
+<td align="left">在光标前插入文本</td>
+</tr>
+<tr>
+<td align="left">I</td>
+<td align="left">在光标所在行首插入文本</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">在光标后加入文本</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">在光标所在行尾加入文本</td>
+</tr>
+<tr>
+<td align="left">o</td>
+<td align="left">在光标所在行下面新加一行</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">在光标所在行上面新加一行</td>
+</tr>
+</tbody></table>
+<p>从输入模式返回命令模式的命令键：<kbd>ESC</kbd></p>
+<table>
+<thead>
+<tr>
+<th><strong>命令</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x</td>
+<td>删除光标所在字符</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除光标所在行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销最近修改</td>
+</tr>
+<tr>
+<td>U</td>
+<td>撤销当前行的所有修改</td>
+</tr>
+<tr>
+<td>r</td>
+<td>替换光标所在字符</td>
+</tr>
+<tr>
+<td>R</td>
+<td>替换从光标开始的字符，同时进入输入模式</td>
+</tr>
+<tr>
+<td>.</td>
+<td>重复上一次的修改</td>
+</tr>
+</tbody></table>
+<p><code>/</code>向前搜索<br><code>?</code>向后搜索<br><code>:wq</code>保存退出<br><code>:w</code>保存<br><code>:q!</code>不保存退出<br><code>ZZ</code>保存退出</p>
+<ul>
+<li><p>键盘方向键移动光标</p>
+</li>
+<li><p>命令模式下，hjkl键移动光标</p>
+</li>
+<li><p><code>h</code>表示向西/左</p>
+</li>
+<li><p><code>j</code>表示向南/下</p>
+</li>
+<li><p><code>k</code>表示向北/上</p>
+</li>
+<li><p><code>l</code>表示向东/右</p>
+</li>
+<li><p>命令模式下，</p>
+</li>
+<li><p><code>0</code>或<code>^</code>移动光标到行首</p>
+</li>
+<li><p><code>$</code>移动光标到行尾</p>
+</li>
+<li><p>命令模式下，</p>
+<ol>
+<li><code>w</code>向后移动一个word</li>
+<li><code>b</code>向前移动光标到word的开头</li>
+<li><code>e</code>移动光标到word的尾部</li>
+</ol>
+</li>
+</ul>
+<p><code>:n</code>进入下一文件<br><code>:e</code>切换到新文件<br><code>:ar</code>显示文件名<br><code>:r</code>读另一个文件</p>
+<p><code>dd</code>剪切当前行<br><code>yy</code>复制当前行<br><code>p</code>粘贴行在当前行下(<code>P</code>上)</p>
+<p>==<font size=5>寄存器</font>==</p>
+<p>命令行模式:registers显示寄存器</p>
+<p>字母寄存器a-z，一共26个，供用户使用<br>编号寄存器0-9，10个，vim自己使用，存放删除和拷贝的文本<br>“0号寄存器是visual模式下拷贝的问题、yy拷贝的行文本<br>“1-”9号寄存器是dd删除的行文本<br>缺省寄存器<br>    %    当前窗口对应的文件名<br>    #    当前窗口的其它文件名<br>    :    命令行模式最近输入的命令<br>    .    最近插入的文本<br>    “    最近删除或拷贝的文本</p>
+<ul>
+<li><p>Visual模式</p>
+<p>命令模式下<code>v</code>进入visual模式</p>
+<p><code>khjl</code>或方向键移动光标</p>
+<p><code>y</code>命令将选择内容拷贝到””和”0寄存器，y表示yank</p>
+</li>
+<li><p>光标定位<br><code>:n</code>定位到第n行<br><code>:0</code>或<code>:1</code>定位到第1行的行首<br><code>:$</code>定位到最后一行的行首<br><code>1G</code>定位到第1行的行首<br><code>G</code>或<code>0G</code>定位到最后一行的行首<br><code>nG</code>定位到第n行的行首<br><code>Ctrl-g</code>在命令行区域输出当前行号<br><code>Ctrl-End</code>定位到最后一个字符</p>
+</li>
+<li><p>shell相关<br><code>:</code>shell命令切换到shell，<code>exit</code>回到vim<br><code>:!</code>命令，执行shell命令<br><code>:r!</code>命令，将shell命令输出粘贴到当前位置</p>
+</li>
+<li><p>定制相关<br><code>:set</code> 选项名<br>布尔型（不加或加no），数值型，串型（=值）</p>
+<p>ai新一行对齐上一行<br>ic搜索忽略大小写<br>magic允许搜索特殊字符<br>nu显示行号<br>report通知用户上一命令影响行号<br>scroll设定Ctrl-d翻动行数<br>sw设置缩进空格数<br>smd显示vi编辑器模式<br>terse缩短错误信息<br>wm设置距屏幕右边界为指定的字符数    </p>
+</li>
+</ul>
+<hr>
+<h2 id="3-正则表达式"><a href="#3-正则表达式" class="headerlink" title="3. 正则表达式"></a>3. 正则表达式</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>BRE/ERE</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>Both</td>
+<td>转义</td>
+</tr>
+<tr>
+<td>.</td>
+<td>Both</td>
+<td>匹配单个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Both</td>
+<td>匹配任意次，可以是0次。a<em>表示匹配任意多次a，.\</em>表示任意字符串</td>
+</tr>
+<tr>
+<td>^</td>
+<td>Both</td>
+<td>锚定匹配位置，从一行的行首开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>Both</td>
+<td>锚定匹配位置，到一行的行尾</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>Both</td>
+<td>匹配中括号内的某个字符。x-y表示一个范围；[^…]表示不匹配中括号中的任意字符。[开括号后跟-或]，-]转义为普通字符</td>
+</tr>
+<tr>
+<td>\{n,m\}</td>
+<td>BRE</td>
+<td>匹配次数为[n,m]，\{n\}匹配n次，\{n,\}最小匹配次数为n</td>
+</tr>
+<tr>
+<td>\(\)</td>
+<td>BRE</td>
+<td>定义一个匹配位置，在后部可以引用该位置。例如，\(ab\).*\1表示ab字符串包夹了一个任意字符串。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>BRE</td>
+<td>引用已经定义的位置，可以从\1到\9</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>ERE</td>
+<td>与BRE的\{n,m\}相同</td>
+</tr>
+<tr>
+<td>+</td>
+<td>ERE</td>
+<td>匹配至少1次</td>
+</tr>
+<tr>
+<td>?</td>
+<td>ERE</td>
+<td>匹配0或1次</td>
+</tr>
+<tr>
+<td>|</td>
+<td>ERE</td>
+<td>或</td>
+</tr>
+<tr>
+<td>()</td>
+<td>ERE</td>
+<td>匹配括号内的整个字符串</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>特别的</p>
+<p>[[:alnum:]] 字符+数字</p>
+<p>[[:alpha:]] 字符</p>
+<p>[[:digit:]] 数字</p>
+<p>[[:lower:]] 小写字符</p>
+<p>[[:upper:]] 大写字符</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-shell相关"><a href="#4-shell相关" class="headerlink" title="4. shell相关"></a>4. shell相关</h2><p>shell主要功能：命令执行、文件名替换、i/o重定向、管道、环境控制、后台处理、shell脚本</p>
+<p>命令的语法<br>    命令+空格+[选项]+参数+(;|回车)<br>    多行单条命令，一行的尾部以\结束</p>
+<ul>
+<li><p>原理<br>/etc/passwd决定了用户登录后执行的shell程序<br>有些特殊的用户，可以不是shell程序</p>
+<ul>
+<li>shell解析用户命令<br>创建子进程执行用户命令<br>shell等待命令子进程退出<br>命令子进程退出，发送SIGCHLD信号给shell<br>shell在信号处理函数中处理子进程退出</li>
+<li>shell进程退出<br>发送SIGCHLD信号给login进程<br>login进程处理SIGCHLD信号<br>退出，发送SIGCHLD信号给init进程<br>init进程处理SIGCHLD信号，重新fork/exec一个getty进程</li>
+</ul>
+</li>
+<li><p>echo显示消息</p>
+<pre><code>转义字符-e进行解释
+\a警报
+\b回退
+\c禁止换行
+\f换页
+\n回车换行
+\r回车不换行
+\t水平制表符
+\v垂直制表符</code></pre></li>
+</ul>
+<p>重音符号``：执行命令<br>分号<code>;</code>：命令序列<br>括号<code>()</code>：命令编组<br><code>&amp;</code>：后台运行<br><code>|</code>：管道，连接命令</p>
+<table>
+<thead>
+<tr>
+<th><strong>元字符</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>?</td>
+<td>匹配路径名的单个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配路径名的任意长度的字符串</td>
+</tr>
+<tr>
+<td>[list]</td>
+<td>匹配list中任意一个字符</td>
+</tr>
+<tr>
+<td>[!list]</td>
+<td>匹配不在list中的任意一个字符</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>消除元字符含义<br><code>\</code>和<code>‘’</code>等价，单引号不展开变量<br><code>“”</code>除了<code>$</code>、<code>\</code>、<code>“”</code>，可展开变量</p>
+</li>
+<li><p>标准变量<br>HOME变量记录用户主目录<br>PATH变量给出外部程序的搜索路径<br>IFS变量定义扩展命令参数时的分隔符</p>
+</li>
+<li><p>参数<br>-开头当成选项<br>双引号、单引号、重音符号开头作为字符串<br>$开头作为变量<br>&lt;&gt;作为重定向符号<br>|作为管道符号<br>其余字符串如果包含*?[]需要做路径匹配展开</p>
+</li>
+</ul>
+<p><code>ps</code>显示PID</p>
+<table>
+<thead>
+<tr>
+<th><strong>选项</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>显示所有进程，但不包括会话leader，不包括无终端进程</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>显示进程完整信息</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>显示所有进程</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>按照树型显示</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>按照job形式输出</td>
+</tr>
+</tbody></table>
+<p><code>nohup</code>退出系统后继续执行<br><code>kill</code>终止进程<br>    信号列表64个<br>    kill –l<br>    kill –n pid<br><code>tee</code>分离输出<br><code>sort</code>文本文件排序<br><code>sleep</code>延时定时</p>
+<p><code>find</code>查找文件目录</p>
+<table>
+<thead>
+<tr>
+<th><strong>选项</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-name  filename</td>
+<td>根据给定的filename做匹配查找</td>
+</tr>
+<tr>
+<td>-size  +-n</td>
+<td>查找大小为n的文件</td>
+</tr>
+<tr>
+<td>-type  filetype</td>
+<td>查找指定类型filetype的文件</td>
+</tr>
+<tr>
+<td>-atime  n</td>
+<td>查找access访问时间的问题</td>
+</tr>
+<tr>
+<td>-mtime  n</td>
+<td>查找修改时间的文件</td>
+</tr>
+</tbody></table>
+<p><code>grep</code>查找文件内容</p>
+<table>
+<thead>
+<tr>
+<th><strong>短选项</strong></th>
+<th><strong>长选项</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-c</td>
+<td>–count</td>
+<td>只显示匹配的行数</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>–ignore-case</td>
+<td>忽略大小写匹配</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>–basic-regexp</td>
+<td>BRE，grep缺省</td>
+</tr>
+<tr>
+<td>-E</td>
+<td>–extended-regexp</td>
+<td>ERE，egrep缺省</td>
+</tr>
+<tr>
+<td>-e  PATTERNS</td>
+<td>–regexp=PATTERNS</td>
+<td>指定一个或多个RE</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>–invert-match</td>
+<td>显示不匹配的行</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>–line-number</td>
+<td>输出行号</td>
+</tr>
+</tbody></table>
+<p><code>xargs [command [initial-arguments]]</code><br><code>xargs</code> 从标准输入上读，将标准输入文件按照空格/TAB拆解成参数，作为command执行参数。</p>
+<p><code>jobs</code>列举后台执行的作业<br><code>history</code>命令则列出到目前为止，执行的所有命令<br><code>alias</code>设置别名<code>alias[别名]=[指令名称]</code><br><code>tee</code>命令分离输出，同时输出到标准输出和文件</p>
+<table>
+<thead>
+<tr>
+<th><strong>选项</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>追加到文件</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>忽略中断信号</td>
+</tr>
+</tbody></table>
+<p>使用&amp;&amp;和||连接两条命令<br>    &amp;&amp;表示and<br>    ||表示or</p>
+<p><code>. command</code>命令执行<code>command</code>，但不会去fork一个新进程<br><code>printf</code>与C语言类似<br><code>df</code>显示可用空间<br><code>du</code>统计文件或者目录的磁盘使用情况</p>
+<p><code>tar zcfv</code>压缩成.tar.gz文件<br><code>tar zxfv</code>解压.tar.gz文件<br><code>tar Jcfv</code>压缩成.tar.xz文件<br><code>tar Jxfv</code>解压.tar.xz文件<br><code>tar jcfv</code>压缩成.tar.bz2文件<br><code>tar jxfv</code>解压.tar.bz2文件</p>
+<p><code>chmod</code>修改文件目录的访问权限<br><code>chown</code>修改文件目录的owner<br><code>chgrp</code>修改文件目录的group</p>
+<p><code>stty</code>设定终端模式<br>    stty –echo禁止回显，输入口令时<br>    stty echo打开回显<br><code>tput</code>控制终端输出缓冲<br>    tput clear清屏<br>    tput cup row column移动光标到row行column列</p>
+<h4 id="脚本相关"><a href="#脚本相关" class="headerlink" title="==脚本相关=="></a>==脚本相关==</h4><ul>
+<li>参数<br>$1-$9表示参数<br>$0表示命令名<br>$#表示参数个数<br>$*将所有参数使用$IFS隔开，形成一个字符串<br>$@是每个参数分隔开<br>set命令用于改变命令行参数<br>$?表示进程退出状态<br>$$表示当前进程id<br><code>shift</code> [n]命令删除前n个参数<br>计算算术的时候使用$(())作为算术表达式</li>
+</ul>
+<p><code>eval + [command]</code>shell在执行命令行之前扫描它两次(重定义/两次解释变量)</p>
+<ul>
+<li><p>if循环<br>if 条件; then<br>command lines<br>[elif 条件<br>command lines]<br>[else<br>command lines]<br>fi</p>
+<ul>
+<li>条件判断<br>常用的：<br>[ -a FILE ] 如果 FILE 存在则为真。<br>[ -d FILE ] 如果 FILE 存在且是一个目录则返回为真。<br>[ -e FILE ] 如果 指定的文件或目录存在时返回为真。<br>[ -f FILE ] 如果 FILE 存在且是一个普通文件则返回为真。<br>[ -r FILE ] 如果 FILE 存在且是可读的则返回为真。<br>[ -w FILE ] 如果 FILE 存在且是可写的则返回为真。<br>[ -x FILE ] 如果 FILE 存在且是可执行的则返回为真。<br>[ INT1 -eq INT2 ] INT1和INT2两数相等返回为真 ,=<br>[ INT1 -ne INT2 ] INT1和INT2两数不等返回为真 ,&lt;&gt;<br>[ INT1 -gt INT2 ] INT1大于INT2返回为真 ,&gt;<br>[ INT1 -ge INT2 ] INT1大于等于INT2返回为真,&gt;=<br>[ INT1 -lt INT2 ] INT1小于INT2返回为真 ,&lt;<br>[ INT1 -le INT2 ] INT1小于等于INT2返回为真,&lt;=<br>[ -z STRING ] 如果STRING的长度为零则返回为真，即空是真<br>[ -n STRING ] 如果STRING的长度非零则返回为真，即非空是真<br>[ STRING1 ]　 如果字符串不为空则返回为真,与-n类似<br>[ STRING1 == STRING2 ] 如果两个字符串相同则返回为真<br>[ STRING1 != STRING2 ] 如果字符串不相同则返回为真<br>[ STRING1 &lt; STRING2 ] 如果 “STRING1”字典排序在“STRING2”前面则返回为真。<br>[ STRING1 &gt; STRING2 ] 如果 “STRING1”字典排序在“STRING2”后面则返回为真。<br>[ ! EXPR ] 逻辑非，如果 EXPR 是false则返回为真。<br>[ EXPR1 -a EXPR2 ] 逻辑与，如果 EXPR1 and EXPR2 全真则返回为真。<br>[ EXPR1 -o EXPR2 ] 逻辑或，如果 EXPR1 或者 EXPR2 为真则返回为真。<br>[ ] || [ ] 用OR来合并两个条件<br>[ ] &amp;&amp; [ ] 用AND来合并两个条件</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>for循环<br>基本格式如下<br>for variable in list-of-values<br>do<br>…<br>done</p>
+</li>
+<li><p>while循环<br>while [ condition ]<br>do<br>…<br>done</p>
+</li>
+<li><p>until循环<br>until [ condition ]; do<br>…<br>done</p>
+</li>
+<li><p>函数<br>函数定义<br>[function] funname()<br>{<br>…<br>}</p>
+</li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> 日常 </category>
-          
+        <category>学习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 日常 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
