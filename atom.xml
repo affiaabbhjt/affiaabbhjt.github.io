@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>空木溪的小屋</title>
   
-  <subtitle>流光剪影</subtitle>
+  <subtitle>世界和平（0/1）</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://affiaabbhjt.github.io/"/>
-  <updated>2020-06-22T14:49:41.372Z</updated>
+  <updated>2020-12-12T18:24:22.057Z</updated>
   <id>http://affiaabbhjt.github.io/</id>
   
   <author>
@@ -21,11 +21,15 @@
     <link href="http://affiaabbhjt.github.io/2020/06/22/Unix%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
     <id>http://affiaabbhjt.github.io/2020/06/22/Unix%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</id>
     <published>2020-06-22T09:43:20.000Z</published>
-    <updated>2020-06-22T14:49:41.372Z</updated>
+    <updated>2020-12-12T18:24:22.057Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Unix课程笔记&quot;&gt;&lt;a href=&quot;#Unix课程笔记&quot; class=&quot;headerlink&quot; title=&quot;Unix课程笔记&quot;&gt;&lt;/a&gt;Unix课程笔记&lt;/h1&gt;&lt;h3 id=&quot;简单的命令&quot;&gt;&lt;a href=&quot;#简单的命令&quot; class=&quot;headerlink&quot; title=&quot;简单的命令&quot;&gt;&lt;/a&gt;简单的命令&lt;/h3&gt;&lt;p&gt;&lt;code&gt;date&lt;/code&gt; 显示日期和时间&lt;br&gt;&lt;code&gt;who&lt;/code&gt;显示用户信息&lt;br&gt;&lt;code&gt;cal&lt;/code&gt;显示日历&lt;br&gt;&lt;code&gt;help&lt;/code&gt;或&lt;code&gt;man&lt;/code&gt;显示帮助等&lt;/p&gt;
+      &lt;h1 id=&quot;Unix课程笔记&quot;&gt;&lt;a href=&quot;#Unix课程笔记&quot; class=&quot;headerlink&quot; title=&quot;Unix课程笔记&quot;&gt;&lt;/a&gt;Unix课程笔记&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;其实标题的“Unix”只是因为上课课程名称是这个名，但就只介绍了一些Linux简单的命令行操作，那我也就这样起名了。&lt;br&gt;记于2020年12月13日 02:22:45&lt;br&gt;以下是原文&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;简单的命令&quot;&gt;&lt;a href=&quot;#简单的命令&quot; class=&quot;headerlink&quot; title=&quot;简单的命令&quot;&gt;&lt;/a&gt;简单的命令&lt;/h3&gt;&lt;p&gt;&lt;code&gt;date&lt;/code&gt; 显示日期和时间&lt;br&gt;&lt;code&gt;who&lt;/code&gt;显示用户信息&lt;br&gt;&lt;code&gt;cal&lt;/code&gt;显示日历&lt;br&gt;&lt;code&gt;help&lt;/code&gt;或&lt;code&gt;man&lt;/code&gt;显示帮助等&lt;/p&gt;
     
     </summary>
     
